@@ -117,7 +117,19 @@ function handleAuthStart(req, res, searchParams) {
     timestamp: Date.now()
   });
   
-  const userScopes = ['channels:read', 'groups:read', 'users:read'].join(',');
+  const userScopes = const userScopes = [
+    'channels:history',
+    'channels:read', 
+    'channels:write',
+    'chat:write',        // ← This is the key missing scope!
+    'groups:read',
+    'groups:write', 
+    'im:history',
+    'im:write',
+    'mpim:history',
+    'users:read',
+    'search:read'
+  ].join(',');
   const clientId = process.env.SLACK_CLIENT_ID;
   const redirectUri = process.env.SLACK_REDIRECT_URI;
   
