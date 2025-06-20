@@ -858,3 +858,4 @@ try {
   console.error('Stack trace:', error.stack);
   process.exit(1);
 }
+export default generator.app;
