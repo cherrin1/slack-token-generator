@@ -116,8 +116,7 @@ function handleAuthStart(req, res, searchParams) {
     user_name: userName,
     timestamp: Date.now()
   });
-  
-  const userScopes = const userScopes = [
+  const userScopes = [
     'channels:history',
     'channels:read', 
     'channels:write',
