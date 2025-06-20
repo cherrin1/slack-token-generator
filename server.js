@@ -108,7 +108,8 @@ class UserTokenGenerator {
         'im:history',          // View messages and other content in a user's direct messages
         'im:write',            // Start direct messages with people on a user's behalf
         'mpim:history',        // View messages and other content in a user's group direct messages
-        'users:read'           // View people in a workspace
+        'users:read',           // View people in a workspace
+        'search:read'
       ].join(',');
       
       // Only request user scopes (no conflicting bot scopes)
