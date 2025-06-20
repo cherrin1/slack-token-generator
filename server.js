@@ -97,11 +97,18 @@ class UserTokenGenerator {
         timestamp: Date.now()
       });
       
-      // Only request the scopes that are configured in your Slack app
+      // UPDATED: Comprehensive user scopes for full MCP integration
       const userScopes = [
-        'channels:read',     // View basic information about public channels in a workspace
-        'groups:read',       // View basic information about a user's private channels  
-        'users:read'         // View people in a workspace
+        'channels:history',    // View messages and other content in a user's public channels
+        'channels:read',       // View basic information about public channels in a workspace
+        'channels:write',      // Manage a user's public channels and create new ones on a user's behalf
+        'chat:write',          // Send messages on a user's behalf
+        'groups:read',         // View basic information about a user's private channels
+        'groups:write',        // Manage a user's private channels and create new ones on a user's behalf
+        'im:history',          // View messages and other content in a user's direct messages
+        'im:write',            // Start direct messages with people on a user's behalf
+        'mpim:history',        // View messages and other content in a user's group direct messages
+        'users:read'           // View people in a workspace
       ].join(',');
       
       // Only request user scopes (no conflicting bot scopes)
@@ -403,8 +410,11 @@ class UserTokenGenerator {
         <div class="info">
             <strong>✅ This app will request permissions to:</strong>
             <ul>
-                <li>View basic information about public channels in your workspace</li>
-                <li>View basic information about your private channels</li>
+                <li>View and send messages in public channels</li>
+                <li>Manage your public channels</li>
+                <li>View and manage your private channels</li>
+                <li>View and send direct messages</li>
+                <li>View and send group direct messages</li>
                 <li>View people in the workspace</li>
             </ul>
         </div>
@@ -622,7 +632,7 @@ class UserTokenGenerator {
             <ol>
                 <li><strong>Copy the token above</strong> using the copy button</li>
                 <li><strong>Store it securely</strong> - treat it like a password</li>
-                <li><strong>Use it in your application</strong> - paste where needed</li>
+                <li><strong>Use it in your MCP integration</strong> - paste where needed</li>
                 <li><strong>Test the connection</strong> - verify it works as expected</li>
             </ol>
         </div>
@@ -630,7 +640,7 @@ class UserTokenGenerator {
         <div class="warning">
             <strong>⚠️ Important Security Notes:</strong>
             <ul>
-                <li>This token grants access to your Slack account with the permissions shown above</li>
+                <li>This token grants comprehensive access to your Slack account</li>
                 <li>Never share this token publicly or commit it to version control</li>
                 <li>Store it in environment variables or secure configuration</li>
                 <li>The token is not stored on our servers - only you have access to it</li>
@@ -858,4 +868,5 @@ try {
   console.error('Stack trace:', error.stack);
   process.exit(1);
 }
+
 export default generator.app;
