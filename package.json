@@ -1,0 +1,37 @@
+// Save as minimal-test.js
+const http = require('http');
+
+console.log('Starting minimal test server...');
+
+const server = http.createServer((req, res) => {
+  console.log('Request received:', req.method, req.url);
+  
+  // Set headers
+  res.writeHead(200, {
+    'Content-Type': 'text/html',
+    'Access-Control-Allow-Origin': '*'
+  });
+  
+  // Send simple HTML response
+  res.end(`
+    <!DOCTYPE html>
+    <html>
+    <head><title>Minimal Test</title></head>
+    <body>
+        <h1>✅ Server is Working!</h1>
+        <p>Time: ${new Date().toLocaleString()}</p>
+        <p>URL: ${req.url}</p>
+        <p>Method: ${req.method}</p>
+    </body>
+    </html>
+  `);
+});
+
+server.listen(3333, () => {
+  console.log('✅ Minimal server running on http://localhost:3333');
+  console.log('📋 Test this URL in your browser: http://localhost:3333');
+});
+
+server.on('error', (error) => {
+  console.error('❌ Server error:', error);
+});
